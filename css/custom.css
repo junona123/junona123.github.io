@@ -314,7 +314,7 @@ ul > li::before {
     margin-right: 8px;
 }
 
-/* Įdėtas nenumeruotas sąrašas */
+
 ul ul {
     padding-left: 20px;
 }
@@ -323,7 +323,7 @@ ul ul > li::before {
     content: "○";
     color: #2563eb;
 }
-/* ==== LENTELĖS STILIUS ==== */
+
 .services-table {
     width: 100%;
     border-collapse: collapse;
@@ -334,7 +334,7 @@ ul ul > li::before {
     overflow: hidden;
 }
 
-/* Antraštinė eilutė */
+
 .services-table thead {
     background-color: #ff589b;
 }
@@ -349,14 +349,14 @@ ul ul > li::before {
     letter-spacing: 1px;
 }
 
-/* Įprastos eilutės */
+
 .services-table td {
     padding: 15px;
     text-align: center;
     border-bottom: 1px solid #d78f8f;
 }
 
-/* Zebra stilius */
+
 .services-table tbody tr:nth-child(even) {
     background-color: #ffa5e4;
 }
@@ -365,14 +365,156 @@ ul ul > li::before {
     background-color: #ffffff;
 }
 
-/* Hover efektas */
+
 .services-table tbody tr:hover {
     background-color: #ffb6f0;
     transform: scale(1.01);
     transition: all 0.3s ease;
 }
 
-/* Paskutinė eilutė be apatinės linijos */
+
+
 .services-table tbody tr:last-child td {
     border-bottom: none;
+}
+
+/* ==================== Fade-in animacija sekcijoms ==================== */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  opacity: 0;
+  animation: fadeIn 3s ease-out forwards;
+}
+
+/* ==================== Bounce animacija social ikonoms ==================== */
+@keyframes iconBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.header-social-links a,
+.social-links a {
+  display: inline-block;
+  animation: iconBounce 1.5s ease-in-out infinite;
+}
+
+/* ==================== Pulsuojantys taškai ==================== */
+.pulsing-dots {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+}
+
+.pulsing-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(23,120,220,1);
+  opacity: 0.9;
+  transform: scale(1);
+  display: inline-block;
+  animation: pulseDot 1.2s ease-in-out infinite;
+}
+
+/* Stagger delay */
+.pulsing-dots span:nth-child(1) { animation-delay: 0s; }
+.pulsing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.pulsing-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes pulseDot {
+  0%   { transform: scale(0.85); opacity: 0.6; }
+  50%  { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.85); opacity: 0.6; }
+}
+
+/* ==================== Prefers-reduced-motion pritaikymas ==================== */
+@media (prefers-reduced-motion: reduce) {
+  /* Fade-in animacijos išjungtos */
+  section {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Social ikonų bounce išjungtas */
+  .header-social-links a,
+  .social-links a {
+    animation: none;
+    transform: none;
+  }
+
+  /* Pulsuojantys taškai statiniai */
+  .pulsing-dots span {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animated-gradient {
+  position: relative;
+  
+
+  
+  background: linear-gradient(-45deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+  /* background-size: % 400%; */
+  min-height: 400px;
+
+
+  animation: gradientAnimation 15s ease infinite;
+    /* padding: 60px 0; */
+}
+
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* .animated-gradient .container {
+/* Figūros konteineris */
+.about-figure {
+  position: absolute;
+  top: 20%;      /* aukštis nuo viršaus */
+  left: 80%;     /* kairė nuo krašto */
+  width: 0;
+  height: 0;
+  pointer-events: none; /* nesutrikdo spustelėjimams */
+  z-index: 1;
+}
+
+/* Trikampis */
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid #feb47b;
+  animation: rotate 5s linear infinite; /* sukasi be pertraukos */
+}
+
+/* Sukimo animacija */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
