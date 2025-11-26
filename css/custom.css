@@ -493,6 +493,43 @@ section {
 
 /* .animated-gradient .container {
 /* Figūros konteineris */
+/* Sukimo animacija */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animated gradient for services section (safe implementation) */
+.animated-gradient {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0; /* give space for content */
+    background: transparent; /* let the ::before pseudo-element show through */
+}
+
+.animated-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0; 
+    z-index: -1; /* put decorative gradient behind all content (prevents covering media) */
+    pointer-events: none;
+    background: linear-gradient(-45deg, #ff7e5f, #a0224a, #0c3786, #ebeb26);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+/* Ensure inner content sits above the animated background */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animated-gradient::before {
+        animation: none;
+    }
+}
 .about-figure {
   position: absolute;
   top: 20%;      /* aukštis nuo viršaus */
@@ -517,4 +554,33 @@ section {
 @keyframes rotate {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.popup-message {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+  transition: right 0.5s ease;
+}
+
+.popup-message.show {
+  right: 20px;
+}
+.input-error {
+  border: 2px solid red !important;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.error {
+    border: 2px solid red !important;
 }

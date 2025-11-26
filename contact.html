@@ -97,84 +97,116 @@
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+<div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row gy-4">
+  <div class="row gy-4">
 
-          <div class="col-lg-5">
+    <div class="col-lg-5">
 
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>info@example.com</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+      <div class="info-wrap">
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-geo-alt flex-shrink-0"></i>
+          <div>
+            <h3>Address</h3>
+            <p>A108 Adam Street, New York, NY 535022</p>
           </div>
-
-          <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
         </div>
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-telephone flex-shrink-0"></i>
+          <div>
+            <h3>Call Us</h3>
+            <p>+1 5589 55488 55</p>
+          </div>
+        </div>
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-envelope flex-shrink-0"></i>
+          <div>
+            <h3>Email Us</h3>
+            <p>info@example.com</p>
+          </div>
+        </div>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" 
+                style="border:0; width: 100%; height: 270px;" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+    </div>
+
+<div class="col-lg-7">
+  <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+    <div class="row gy-4">
+
+      <div class="col-md-6">
+        <label for="firstname" class="pb-2">Vardas</label>
+        <input type="text" name="firstname" id="firstname" class="form-control" required>
+        <small class="error-text"></small>
+      </div>
+
+      <div class="col-md-6">
+        <label for="lastname" class="pb-2">Pavardė</label>
+        <input type="text" name="lastname" id="lastname" class="form-control" required>
+        <small class="error-text"></small>
 
       </div>
 
-    </section><!-- /Contact Section -->
+      <div class="col-md-6">
+        <label for="email" class="pb-2">El. paštas</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+        <small class="error-text"></small>
+      </div>
 
-  </main>
+      <div class="col-md-6">
+        <label for="phone" class="pb-2">Telefono numeris</label>
+        <input type="tel" name="phone" id="phone" class="form-control">
+        <small class="error-text"></small>
+      </div>
+
+      <div class="col-md-12">
+        <label for="address" class="pb-2">Adresas</label>
+        <input type="text" name="address" id="address" class="form-control">
+        <small class="error-text"></small>
+      </div>
+
+      <div class="col-md-12">
+        <h4 class="mt-3 mb-2">Vertinimo klausimai (1–10)</h4>
+      </div>
+
+      <div class="col-md-12">
+        <label for="q1" class="pb-2">1. Kaip vertinate paslaugų kokybę?</label>
+        <input type="number" min="1" max="10" id="q1" name="q1" class="form-control" required>
+        <small class="error-text"></small>
+      </div>
+
+      <div class="col-md-12">
+        <label for="q2" class="pb-2">2. Bendravimas su klientu?</label>
+        <input type="number" min="1" max="10" id="q2" name="q2" class="form-control" required>
+        <small class="error-text"></small>
+      </div>
+
+      <div class="col-md-12">
+        <label for="q3" class="pb-2">3. Rekomenduotumėte mus kitiems?</label>
+        <input type="number" min="1" max="10" id="q3" name="q3" class="form-control" required>
+        <small class="error-text"></small>
+      </div>
+
+      <div class="col-md-12 text-center">
+        <div id="formMessage"></div>
+        <button type="submit" id="submit">Siųsti</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+  </div><!-- END row -->
+
+</div><!-- END container -->
+
+</section>
+
+</main>
 
   <footer id="footer" class="footer light-background">
 
@@ -218,6 +250,10 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <div id="successPopup" class="popup-message">
+  Duomenys pateikti sėkmingai!
+</div>
 
 </body>
 
