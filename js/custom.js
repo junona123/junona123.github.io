@@ -237,3 +237,162 @@ document.addEventListener("DOMContentLoaded", () => {
     // Pirmas patikrinimas
     checkFormValidity();
 });
+// 2. Duomenų rinkinys
+
+const cardIcons =  ["🍎","🍌","🍇","🍒","🍉","🥝","🍓","🍍",
+    "🍑","🍆","🥑","🍋"];
+
+const board = document.getElementById("game-board");
+const movesEl = document.getElementById("moves");
+const matchesEl = document.getElementById("matches");
+const winMessage = document.getElementById("win-message");
+const bestEasyEl = document.getElementById('best-easy');
+const bestHardEl = document.getElementById('best-hard');
+const timerEl = document.getElementById("timer");
+
+loadBestScores();
+
+let moves = 0;
+let matches = 0;
+let firstCard = null;
+let lockBoard = false;
+let timer = 0;
+let timerInterval = null;
+
+
+// Eventai
+document.getElementById("start").addEventListener("click", startGame);
+document.getElementById("reset").addEventListener("click", startGame);
+document.getElementById("difficulty").addEventListener("change", startGame);
+
+// ❗ Pagrindinė start funkcija
+function startGame() {
+    winMessage.textContent = "";
+    moves = 0;
+    matches = 0;
+
+    movesEl.textContent = 0;
+    matchesEl.textContent = 0;
+    
+    firstCard = null;
+    lockBoard = false;
+
+    board.innerHTML = "";
+    firstCard = null;
+    lockBoard = false;
+
+    let difficulty = document.getElementById("difficulty").value;
+
+    let rows = difficulty === "easy" ? 3 : 4;
+    let cols = difficulty === "easy" ? 4 : 6;
+    board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+    let totalCards = rows * cols; // 12 arba 24
+    let neededPairs = totalCards / 2;
+
+    let icons = cardIcons.slice(0, neededPairs);
+
+    let deck = [...icons, ...icons];
+    deck.sort(() => Math.random() - 0.5);
+
+    deck.forEach(icon => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.value = icon;
+        card.textContent = "";
+        card.addEventListener("click", flipCard);
+        board.appendChild(card);
+    stopTimer();  // sustabdo, jei buvęs laikmatis veikė
+    startTimer(); // paleidžia naują laikmatį
+
+    });
+    
+}
+function loadBestScores() {
+    const bestEasy = localStorage.getItem("best_easy");
+    const bestHard = localStorage.getItem("best_hard");
+
+    bestEasyEl.textContent = bestEasy ? bestEasy : "-";
+    bestHardEl.textContent = bestHard ? bestHard : "-";
+}
+function saveBestScore(difficulty, moves) {
+    if (difficulty === "easy") {
+        const best = localStorage.getItem("best_easy");
+        if (!best || moves < best) {
+            localStorage.setItem("best_easy", moves);
+            bestEasyEl.textContent = moves;
+        }
+    } else {
+        const best = localStorage.getItem("best_hard");
+        if (!best || moves < best) {
+            localStorage.setItem("best_hard", moves);
+            bestHardEl.textContent = moves;
+        }
+    }
+}
+
+// ❗ Kortelių paspaudimas
+function flipCard() {
+    if (lockBoard) return;
+    if (this.classList.contains("flipped") || this.classList.contains("matched")) return;
+
+    this.classList.add("flipped");
+    this.textContent = this.dataset.value;
+
+    if (!firstCard) {
+        firstCard = this;
+        return;
+    }
+
+    moves++;
+    movesEl.textContent = moves;
+
+    if (firstCard.dataset.value === this.dataset.value) {
+        firstCard.classList.add("matched");
+        this.classList.add("matched");
+
+        firstCard = null;
+        matches++;
+        matchesEl.textContent = matches;
+
+        checkWin();
+    } else {
+        lockBoard = true;
+        setTimeout(() => {
+            firstCard.classList.remove("flipped");
+            this.classList.remove("flipped");
+
+            firstCard.textContent = "";
+            this.textContent = "";
+
+            firstCard = null;
+            lockBoard = false;
+        }, 1000);
+    }
+}
+function startTimer() {
+    timer = 0;
+    timerEl.textContent = timer;
+
+    timerInterval = setInterval(() => {
+        timer++;
+        timerEl.textContent = timer;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+}
+
+
+
+function checkWin() {
+    let neededPairs = board.children.length / 2;
+    if (matches === neededPairs) {
+        winMessage.textContent = "Laimėjote!";
+        stopTimer();
+        const difficulty = document.getElementById("difficulty").value;
+        saveBestScore(difficulty, moves);
+    }
+}

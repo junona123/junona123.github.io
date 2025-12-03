@@ -193,7 +193,7 @@
 
       <div class="col-md-12 text-center">
         <div id="formMessage"></div>
-        <button type="submit" id="submit">Siųsti</button>
+       <button type="submit" id="submitBtn" disabled>Siųsti</button>
       </div>
 
     </div>
@@ -228,6 +228,37 @@
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
+    <section id="mano-zaidimas">
+    <h2>Mano Žaidimas</h2>
+
+    <!-- Sudėtingumo pasirinkimas -->
+    <label for="difficulty">Sudėtingumas:</label>
+    <select id="difficulty">
+        <option value="easy">Lengvas (4x3)</option>
+        <option value="hard">Sunkus (6x4)</option>
+    </select>
+
+    <!-- Mygtukai -->
+    <div>
+        <button id="start">Start</button>
+        <button id="reset">Atnaujinti</button>
+    </div>
+
+    <!-- Statistika -->
+    <p>Ėjimai: <span id="moves">0</span></p>
+    <p>Poros: <span id="matches">0</span></p>
+    <p>Laikas: <span id="timer">0</span>s</p>
+
+    <!-- Laimėjimo žinutė -->
+    <h3 id="win-message"></h3>
+
+    <!-- Žaidimų lenta -->
+    <div id="game-board" class="board"></div>
+    <p>Geriausias rezultatas (lengvas): <span id="best-easy">-</span></p>
+    <p>Geriausias rezultatas (sunkus): <span id="best-hard">-</span></p>
+
+</section>
+
 
   </footer>
 
@@ -254,6 +285,10 @@
   <div id="successPopup" class="popup-message">
   Duomenys pateikti sėkmingai!
 </div>
+
+<!-- Įkeliam atskirą JS failą -->
+<script src="assets/js/custom.js"></script>
+
 
 </body>
 
